@@ -12,7 +12,7 @@ This approach is particularly useful in scenarios like web games, high-performan
 
 ### 🧩 Estrutura MVC com Structs | MVC Structure with Structs
 ### Modelo (Model) | Model
-´´´ go
+``` go
 type PlayerScore struct {
     PlayerID int
     Score    int
@@ -25,19 +25,19 @@ func GetPlayerScores(playerID int) []PlayerScore {
         {PlayerID: playerID, Score: 95},
     }
 }
-´´´
+```
 
 ###V isão (View) | View
-´´´
+```
 go
 func DisplayScores(scores []PlayerScore) {
     for _, score := range scores {
         fmt.Printf("Jogador %d - Pontuação: %d\n", score.PlayerID, score.Score)
     }
 }
-´´´
+```
 ### Controlador (Controller) | Controller
-´´´
+```
 go
 func HandleRequest(playerID int) {
     scores := GetPlayerScores(playerID)
@@ -52,13 +52,13 @@ func main() {
     playerID := 42
     HandleRequest(playerID)
 }
-´´´
+```
 ##🧠 Caminho para o SOLID | The Path to SOLID
 ###✅ SRP — Princípio da Responsabilidade Única
 Cada struct representa um único conceito de dados. Each struct represents a single concept of data.
 
 go
-´´´
+```
 type PlayerProfile struct {
     ID       int
     Nickname string
@@ -68,12 +68,12 @@ type PlayerStats struct {
     GamesPlayed int
     Wins        int
 }
-´´´
+```
 ### ✅ OCP — Aberto para Extensão, Fechado para Modificação
 Use interfaces para adicionar novos comportamentos sem alterar os existentes. Use interfaces to add new behaviors without modifying existing ones.
 
 go
-'''
+```
 type RewardStrategy interface {
     Calculate(score int) int
 }
@@ -97,12 +97,12 @@ func (r VipReward) Calculate(score int) int {
 func GetReward(score int, strategy RewardStrategy) int {
     return strategy.Calculate(score)
 }
-'''
+```
 ### ✅ LSP — Princípio da Substituição de Liskov
 Subtipos devem se comportar como seus tipos base. Subtypes must behave like their base types.
 
 go
-'''
+```
 type Shape interface {
     Area() int
 }
@@ -124,7 +124,7 @@ func (s Square) Area() int {
 func PrintArea(s Shape) {
     fmt.Println("Área:", s.Area())
 }
-'''
+```
 ### 🧾 Conclusão | Conclusion
 Essa abordagem mostra que é possível aplicar os princípios do SOLID mesmo em arquiteturas baseadas em structs e funções puras. Ao separar responsabilidades, 
 usar interfaces para extensão e respeitar o comportamento esperado das abstrações, criamos sistemas mais robustos, previsíveis e fáceis de manter — mesmo fora do paradigma orientado a objetos tradicional.
@@ -143,7 +143,7 @@ Interfaces específicas são melhores do que interfaces genéricas. Specific int
 Em vez de criar uma interface grande e genérica com muitos métodos, crie interfaces pequenas e focadas. Isso evita que structs sejam forçadas a implementar métodos que não fazem sentido para elas.
 
 go
-'''
+```
 // Interfaces segregadas
 type Scorer interface {
     Score() int
@@ -174,22 +174,22 @@ type Guest struct {
 func (g Guest) Score() int {
     return g.TempScore
 }
-'''
+```
 Agora, funções que precisam apenas da pontuação podem aceitar Scorer, sem exigir que todos os tipos tenham apelido, por exemplo.
 
 go
-'''
+```
 func ShowScore(s Scorer) {
     fmt.Println("Pontuação:", s.Score())
 }
-'''
+```
 ### ✅ DIP — Princípio da Inversão de Dependência
 Módulos de alto nível não devem depender de módulos de baixo nível. Ambos devem depender de abstrações. High-level modules should not depend on low-level modules. Both should depend on abstractions.
 
 Em Go, isso é feito naturalmente com interfaces. O código de alto nível depende de interfaces, e structs concretas são injetadas externamente.
 
 go
-'''
+```
 type ScoreRepository interface {
     FindScores(playerID int) []int
 }
@@ -217,7 +217,7 @@ func main() {
     service := ScoreService{Repo: DBRepository{}}
     service.PrintScores(42)
 }
-'''
+```
 Assim, o serviço não depende diretamente do banco de dados — ele depende de uma abstração (ScoreRepository), o que facilita testes, manutenção e substituição de implementações.
 
 ## 🧾 Conclusão Final | Final Conclusion
