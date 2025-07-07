@@ -238,5 +238,9 @@ Separar responsabilidades (SRP)
 Essa abordagem é ideal para linguagens como Go, Rust, C e até PHP (com simulações), e pode ser usada em jogos, APIs, microserviços e sistemas embarcados.
 
 Se quiser, posso gerar um repositório com esse conteúdo já estruturado, com exemplos executáveis e organização de pastas. Quer que eu monte isso para você?
+                       
+## 📄 Licença
+
+Este projeto está licenciado sob os termos da [GNU GPLv3](LICENSE).
 
 
