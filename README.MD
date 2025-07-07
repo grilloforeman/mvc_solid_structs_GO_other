@@ -12,7 +12,7 @@ This approach is particularly useful in scenarios like web games, high-performan
 
 ### 🧩 Estrutura MVC com Structs | MVC Structure with Structs
 ### Modelo (Model) | Model
-''' go
+´´´ go
 type PlayerScore struct {
     PlayerID int
     Score    int
@@ -25,40 +25,40 @@ func GetPlayerScores(playerID int) []PlayerScore {
         {PlayerID: playerID, Score: 95},
     }
 }
-'''
+´´´
 
 ###V isão (View) | View
-'''
+´´´
 go
 func DisplayScores(scores []PlayerScore) {
     for _, score := range scores {
         fmt.Printf("Jogador %d - Pontuação: %d\n", score.PlayerID, score.Score)
     }
 }
-'''
+´´´
 ### Controlador (Controller) | Controller
-'''
+´´´
 go
 func HandleRequest(playerID int) {
     scores := GetPlayerScores(playerID)
     DisplayScores(scores)
 }
-'''
 
-### Ponto de Entrada | Entry Point
-'''
+
+Ponto de Entrada | Entry Point
+
 go
 func main() {
     playerID := 42
     HandleRequest(playerID)
 }
-'''
+´´´
 ##🧠 Caminho para o SOLID | The Path to SOLID
 ###✅ SRP — Princípio da Responsabilidade Única
 Cada struct representa um único conceito de dados. Each struct represents a single concept of data.
 
 go
-'''
+´´´
 type PlayerProfile struct {
     ID       int
     Nickname string
@@ -68,7 +68,7 @@ type PlayerStats struct {
     GamesPlayed int
     Wins        int
 }
-'''
+´´´
 ### ✅ OCP — Aberto para Extensão, Fechado para Modificação
 Use interfaces para adicionar novos comportamentos sem alterar os existentes. Use interfaces to add new behaviors without modifying existing ones.
 
